@@ -6,38 +6,50 @@ landing page.
 
 They are plain static HTML with no build step and no dependencies.
 
-## Publishing them
+## Where they live
 
-The pages have to be reachable over `https://` from the public internet for
-TikTok's reviewers to open them. The repository they currently live in is
-private, so they have to be served from somewhere public. Options:
+The source of truth is this folder. The published copy is in a **separate
+public repository**, because the pipeline repository is private and GitHub
+Pages will not publish from a private repository on a free org plan.
 
-**GitHub Pages (recommended).** Put these files in a public repository and
-turn on Pages for it:
+| | |
+|---|---|
+| Public repo | `Kwentong-Barbero/legal` |
+| `main` branch | the source files, for editing and history |
+| `gh-pages` branch | what Pages actually serves |
+| Live at | `https://kwentong-barbero.github.io/legal/` |
+
+## Pushing a change
+
+The `gh-pages` branch has to be refreshed after every edit, or Pages keeps
+serving the old copy. From the public repo:
 
 ```bash
-# in a public repo, e.g. Kwentong-Barbero/kwentong-barbero-site
-cp site/*.html .
-# then: Settings -> Pages -> Source: Deploy from a branch -> main / (root)
+git clone git@github.com:Kwentong-Barbero/legal.git
+cd legal
+
+# copy the edited files across
+cp /path/to/short-video-pipeline/site/*.html .
+
+# refresh gh-pages from the new main
+git checkout main && git pull
+git checkout -B gh-pages
+git rm -rq --cached . && rm -rf .github DEPLOY.md
+git add -A && git commit -m "Update site"
+git push origin gh-pages
 ```
 
-The result is served from `https://<org>.github.io/<repo>/`.
+## The URLs in the TikTok portal
 
-**Any static host.** The three HTML files are self-contained, so they also
-work on Netlify, Cloudflare Pages, Vercel, or a plain web server. Point the
-root at `index.html` and keep `terms.html` and `privacy.html` beside it.
-
-## Updating the URLs in the TikTok portal
-
-Once the site is live, the three URLs in the TikTok app configuration are:
+These are the values to paste into the app configuration:
 
 | Field | URL |
 |---|---|
-| Terms of Service URL | `https://<host>/terms.html` |
-| Privacy Policy URL | `https://<host>/privacy.html` |
-| Web/Desktop URL | `https://<host>/` |
+| Terms of Service URL | `https://kwentong-barbero.github.io/legal/terms.html` |
+| Privacy Policy URL | `https://kwentong-barbero.github.io/legal/privacy.html` |
+| Web/Desktop URL | `https://kwentong-barbero.github.io/legal/` |
 
-Keep them consistent with what the site is actually served from.
+Keep them consistent with whatever the site is actually served from.
 
 ## Note on the contact address
 
