@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Deletion Instructions — Kwentong Barbero</title>
+<style>
+  :root { color-scheme: dark; }
+  body {
+    margin: 0 auto; max-width: 46rem; padding: 3rem 1.25rem;
+    font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #14110e; color: #e8e2d8;
+  }
+  h1 { font-size: 1.9rem; margin-bottom: .25rem; letter-spacing: -.02em; }
+  h2 { font-size: 1.15rem; margin-top: 2.5rem; color: #f0c987;
+     border-bottom: 1px solid #3a3026; padding-bottom: .35rem; }
+  .sub { color: #a89e8e; font-size: .95rem; margin-top: 0; }
+  a { color: #f0c987; }
+  li { margin-bottom: .4rem; }
+  code { background: #221d18; padding: .1rem .35rem; border-radius: 4px; font-size: .9em; }
+</style>
+</head>
+<body>
+
+<h1>Data Deletion Instructions</h1>
+<p class="sub">Kwentong Barbero — effective 3 November 2026</p>
+
+<p>
+This page explains how to request the deletion of your data, and how to
+delete it yourself. It applies to data held by Kwentong Barbero.
+</p>
+
+<h2>What Kwentong Barbero stores</h2>
+<p>
+Kwentong Barbero is a local publishing tool. It runs on your own machine,
+and the data it keeps stays on that machine. We do not operate a server that
+holds your account, and we cannot see your data.
+</p>
+<p>
+The data that exists locally is:
+</p>
+<ul>
+  <li>
+    <strong>Publishing credentials.</strong> Access and refresh tokens issued
+    by TikTok, Facebook, Instagram and YouTube, plus the account identifiers
+    needed to post (a TikTok open_id, a Facebook Page id, an Instagram
+    professional account id). These live in a local configuration file that
+    is excluded from version control.
+  </li>
+  <li>
+    <strong>Publishing history.</strong> A local log recording the story id,
+    the platform, a hash of the video file and the publication date, so a
+    video is not published twice by mistake.
+  </li>
+  <li>
+    <strong>Service logs.</strong> Local log files containing error messages
+    and request diagnostics. Access tokens and secrets are redacted before
+    anything is written.
+  </li>
+</ul>
+<p>
+For a fuller description, see the <a href="privacy.html">Privacy Policy</a>.
+</p>
+
+<h2>Deleting your data yourself</h2>
+<p>
+The quickest way to delete everything is to delete the local files. Both
+paths below are relative to the project directory:
+</p>
+<ul>
+  <li>
+    Delete the <code>.env</code> file to remove every stored credential.
+    This immediately stops the publisher from being able to post on your
+    behalf.
+  </li>
+  <li>
+    Delete the <code>output/publish_log.json</code> file to remove the
+    publishing history.
+  </li>
+  <li>
+    Delete the <code>logs/</code> directory to remove the service logs.
+  </li>
+</ul>
+<p>
+You can also revoke each platform's access independently. Removing a
+platform's permission from that platform's own app settings invalidates the
+stored token for that platform, whether or not the local file is deleted.
+</p>
+
+<h2>Requesting deletion from us</h2>
+<p>
+If you would like the local data removed on your behalf, email
+<a href="mailto:barberoscutmedia@gmail.com">barberoscutmedia@gmail.com</a>
+from the address associated with the account and tell us which platform's
+data you want removed. We will confirm once it has been done.
+</p>
+
+<h2>Data held by the social platforms</h2>
+<p>
+Content you publish is held by the platform you publish to — a published
+video, its comments, likes, followers and profile are governed by that
+platform's own privacy policy and deletion tools. Kwentong Barbero does not
+mirror, copy or retain that data, so we cannot delete it for you. Use the
+platform's own access, download and deletion tools, or write to us and we
+will point you to the right place.
+</p>
+
+<h2>Changes</h2>
+<p>
+This page may be updated as the service changes. The version published on
+this page is the version that applies.
+</p>
+
+</body>
+</html>
